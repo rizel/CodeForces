@@ -1,0 +1,50 @@
+8 5
+10 9 8 7 7 7 5 5
+// status:
+'use strict';
+
+process.stdin.resume();
+process.stdin.setEncoding('utf-8');
+
+let inputString = '';
+let currentLine = 0;
+
+process.stdin.on('data', inputStdin => {
+    inputString += inputStdin;
+});
+
+process.stdin.on('end', _ => {
+    inputString = inputString.trim().split('\n').map( string => {
+        return string.trim();
+    });
+    main();
+});
+function readline() {
+    return inputString[currentLine++];
+}
+/*******************************/
+// A greedy solution.
+
+function main() {
+    const input_line          = readline().split(" ");
+    const number_participants = input_line[0]; // not necessary
+    const minimum_places      = input_line[1];
+    const scores = readline().split(" ");
+    console.log("hi");
+    scores.sort((a,b) => b-a);
+    console.log(scores);
+
+    let scores_counter = {};
+
+    for (let i=0; i<scores.length; ++i){
+        if (scores[i] in scores_counter){
+            scores_counter[scores[i]]++;
+        } else{
+            scores_counter[scores[i]] = 1;
+        }
+    }
+    console.log(scores_counter);
+
+
+    
+}
